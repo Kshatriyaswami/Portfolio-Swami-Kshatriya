@@ -17,6 +17,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <ThemeToggle />
       {/* Hero */}
       <header className="px-6 md:px-12 pt-16 pb-12 max-w-6xl mx-auto">
         <motion.div
