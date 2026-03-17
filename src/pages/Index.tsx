@@ -8,6 +8,7 @@ import SkillsSection from "@/components/SkillsSection";
 import CertificationsSection from "@/components/CertificationsSection";
 import EducationSection from "@/components/EducationSection";
 import Footer from "@/components/Footer";
+import ThemeToggle from "@/components/ThemeToggle";
 import profileAvatar from "@/assets/profile-avatar.png";
 
 const Index = () => {
@@ -16,6 +17,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <ThemeToggle />
       {/* Hero */}
       <header className="px-6 md:px-12 pt-16 pb-12 max-w-6xl mx-auto">
         <motion.div
