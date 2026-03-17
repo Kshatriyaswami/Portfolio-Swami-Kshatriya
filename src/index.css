@@ -6,10 +6,45 @@
 
 @layer base {
   :root {
+    --background: 0 0% 98%;
+    --foreground: 230 15% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 230 15% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 230 15% 12%;
+
+    --primary: 230 15% 12%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 230 10% 93%;
+    --secondary-foreground: 230 15% 12%;
+
+    --muted: 230 10% 93%;
+    --muted-foreground: 230 10% 45%;
+
+    --accent: 5 85% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 230 10% 85%;
+    --input: 230 10% 90%;
+    --ring: 5 85% 55%;
+
+    --radius: 1.5rem;
+
+    --glass-surface: 0 0% 100%;
+    --glass-border: 230 10% 85%;
+  }
+
+  .dark {
     --background: 230 15% 12%;
     --foreground: 230 10% 96%;
 
-    --card: 230 15% 12%;
+    --card: 230 15% 14%;
     --card-foreground: 230 10% 96%;
 
     --popover: 230 15% 10%;
@@ -28,7 +63,7 @@
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
     --border: 0 0% 100%;
     --input: 230 10% 20%;
@@ -38,21 +73,12 @@
 
     --glass-surface: 230 15% 6%;
     --glass-border: 0 0% 100%;
-
-    --sidebar-background: 230 15% 10%;
-    --sidebar-foreground: 230 10% 96%;
-    --sidebar-primary: 5 85% 55%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 230 10% 18%;
-    --sidebar-accent-foreground: 230 10% 96%;
-    --sidebar-border: 0 0% 100%;
-    --sidebar-ring: 5 85% 55%;
   }
 }
 
 @layer base {
   * {
-    @apply border-border/10;
+    @apply border-border/20;
   }
 
   body {
@@ -63,25 +89,35 @@
 
 @layer utilities {
   .glass-card {
-    @apply relative overflow-hidden border border-white/10 bg-white/[0.02] backdrop-blur-xl;
+    @apply relative overflow-hidden border border-border/15 backdrop-blur-xl;
     border-radius: 24px;
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 1px 1px hsl(var(--border) / 0.1);
+  }
+
+  /* Light mode glass */
+  :root .glass-card {
+    @apply bg-card/80;
+  }
+
+  /* Dark mode glass */
+  .dark .glass-card {
+    background: rgba(255, 255, 255, 0.02);
   }
 
   .glass-card:hover {
-    border-color: rgba(239, 68, 68, 0.4);
+    border-color: hsl(var(--accent) / 0.4);
   }
 
   .glass-surface {
-    background: rgba(10, 10, 10, 0.7);
+    background: hsl(var(--glass-surface) / 0.7);
     backdrop-filter: blur(24px);
   }
 
   .tech-badge {
     @apply px-2 py-1 text-[10px] font-mono uppercase tracking-[0.15em] rounded-md;
-    background: rgba(239, 68, 68, 0.1);
-    color: rgb(248, 113, 113);
-    border: 1px solid rgba(239, 68, 68, 0.2);
+    background: hsl(var(--accent) / 0.1);
+    color: hsl(var(--accent));
+    border: 1px solid hsl(var(--accent) / 0.2);
   }
 
   .font-mono-display {
@@ -105,8 +141,8 @@
       0deg,
       transparent,
       transparent 2px,
-      rgba(255, 255, 255, 0.015) 2px,
-      rgba(255, 255, 255, 0.015) 4px
+      hsl(var(--foreground) / 0.015) 2px,
+      hsl(var(--foreground) / 0.015) 4px
     );
   }
 
@@ -114,7 +150,7 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(255, 255, 255, 0.05) 50%,
+      hsl(var(--foreground) / 0.05) 50%,
       transparent 100%
     );
     background-size: 200% 100%;
