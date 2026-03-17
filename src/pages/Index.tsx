@@ -4,6 +4,11 @@ import { LayoutGrid, List, Terminal } from "lucide-react";
 import { projects, type Project } from "@/data/projects";
 import ProjectCard from "@/components/ProjectCard";
 import ProjectModal from "@/components/ProjectModal";
+import SkillsSection from "@/components/SkillsSection";
+import CertificationsSection from "@/components/CertificationsSection";
+import EducationSection from "@/components/EducationSection";
+import Footer from "@/components/Footer";
+import profileAvatar from "@/assets/profile-avatar.png";
 
 const Index = () => {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
@@ -17,25 +22,45 @@ const Index = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+          className="flex flex-col md:flex-row items-start gap-8"
         >
-          <div className="flex items-center gap-2 mb-6">
-            <Terminal size={14} className="text-accent-red" />
-            <span className="font-mono-display text-[10px] tracking-[0.2em] text-accent-red uppercase">
-              System_Status: Operational
-            </span>
+          {/* Avatar */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="shrink-0"
+          >
+            <div className="w-32 h-32 md:w-40 md:h-40 rounded-[24px] overflow-hidden border-2 border-foreground/10 relative group">
+              <img
+                src={profileAvatar}
+                alt="Swami Narayan Kshatriya"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
+          </motion.div>
+
+          {/* Info */}
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-4">
+              <Terminal size={14} className="text-accent-red" />
+              <span className="font-mono-display text-[10px] tracking-[0.2em] text-accent-red uppercase">
+                System_Status: Operational
+              </span>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-foreground leading-[1.1]">
+              Swami Narayan Kshatriya
+            </h1>
+            <p className="mt-4 text-foreground/50 text-lg leading-relaxed max-w-2xl">
+              Computer Engineering undergraduate specializing in building scalable applications and REST APIs using Java, JavaScript, and SQL. Experienced in backend development, AI-powered systems, and cloud-based deployment solutions. Passionate about solving real-world problems using DSA and system design.
+            </p>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-foreground leading-[1.1] max-w-3xl">
-            I build tools that deploy at the speed of thought.
-          </h1>
-          <p className="mt-6 text-foreground/50 text-lg leading-relaxed max-w-xl">
-            Full-stack engineer crafting high-performance automation tools and intelligent navigation systems.
-          </p>
         </motion.div>
       </header>
 
       {/* Projects Section */}
-      <section className="px-6 md:px-12 pb-20 max-w-6xl mx-auto">
-        {/* Section Header */}
+      <section className="px-6 md:px-12 pb-8 max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <h2 className="font-mono-display text-[11px] tracking-[0.15em] text-foreground/40 uppercase">
             Projects ({projects.length})
@@ -60,7 +85,6 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Grid / List */}
         <div
           className={
             viewMode === "grid"
@@ -78,6 +102,18 @@ const Index = () => {
           ))}
         </div>
       </section>
+
+      {/* Skills */}
+      <SkillsSection />
+
+      {/* Education */}
+      <EducationSection />
+
+      {/* Certifications */}
+      <CertificationsSection />
+
+      {/* Footer */}
+      <Footer />
 
       {/* Modal */}
       <AnimatePresence>
