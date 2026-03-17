@@ -8,6 +8,7 @@ import SkillsSection from "@/components/SkillsSection";
 import CertificationsSection from "@/components/CertificationsSection";
 import EducationSection from "@/components/EducationSection";
 import Footer from "@/components/Footer";
+import ThemeToggle from "@/components/ThemeToggle";
 import profileAvatar from "@/assets/profile-avatar.png";
 
 const Index = () => {
