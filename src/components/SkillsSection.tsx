@@ -24,12 +24,12 @@ const SkillsSection = () => (
           transition={{ delay: i * 0.08, duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
           className="glass-card p-6"
         >
-          <h3 className="font-mono-display text-[10px] tracking-[0.15em] text-accent-red uppercase mb-4">
+          <h3 className="font-mono-display text-[11px] tracking-[0.15em] text-foreground font-bold uppercase mb-4">
             {cat.label}
           </h3>
           <div className="flex flex-wrap gap-2">
             {cat.items.map((item) => (
-              <span key={item} className="tech-badge">{item}</span>
+              <span key={item} className="px-2 py-1 text-[10px] font-mono uppercase tracking-[0.15em] rounded-md bg-foreground/10 text-foreground/80 border border-foreground/10">{item}</span>
             ))}
           </div>
         </motion.div>
