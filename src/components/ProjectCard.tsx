@@ -1,6 +1,20 @@
 import { motion } from "framer-motion";
 import type { Project } from "@/data/projects";
 
+const techLogos: Record<string, string> = {
+  "Node.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  "Express.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+  "React.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  "TypeScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  "Python": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  "JavaScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+  "MySQL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+  "MongoDB": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+  "GitHub API": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+  "SQL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+};
+
 interface ProjectCardProps {
   project: Project;
   onClick: () => void;
@@ -32,12 +46,17 @@ const ProjectCard = ({ project, onClick, index }: ProjectCardProps) => {
       </p>
 
       <div className="flex gap-2 flex-wrap relative z-10">
-        {project.tech.slice(0, 3).map((t) => (
-          <span key={t} className="tech-badge">{t}</span>
+        {project.tech.slice(0, 4).map((t) => (
+          <span key={t} className="tech-badge inline-flex items-center gap-1.5">
+            {techLogos[t] && (
+              <img src={techLogos[t]} alt={t} className="w-3.5 h-3.5" />
+            )}
+            {t}
+          </span>
         ))}
-        {project.tech.length > 3 && (
+        {project.tech.length > 4 && (
           <span className="px-2 py-1 text-[10px] font-mono text-foreground/40">
-            +{project.tech.length - 3}
+            +{project.tech.length - 4}
           </span>
         )}
       </div>

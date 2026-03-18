@@ -27,7 +27,7 @@ const Footer = () => (
             <Github size={18} />
           </a>
           <a
-            href="https://linkedin.com/in/swami-kshatriya"
+            href="https://www.linkedin.com/in/swami-kshatriya/"
             target="_blank"
             rel="noopener noreferrer"
             className="p-3 rounded-xl border border-foreground/10 text-foreground/40 hover:text-accent-red hover:border-accent/40 transition-colors"
@@ -45,13 +45,10 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="mt-8 pt-6 border-t border-foreground/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="mt-8 pt-6 border-t border-foreground/5 flex items-center justify-center">
         <p className="text-xs text-foreground/30 font-mono-display tracking-wider">
           © {new Date().getFullYear()} SWAMI NARAYAN KSHATRIYA
         </p>
-        <div className="flex items-center gap-4">
-          <span className="text-xs text-foreground/30">English • Marathi • Hindi</span>
-        </div>
       </div>
     </div>
   </footer>
