@@ -8,7 +8,7 @@ import SkillsSection from "@/components/SkillsSection";
 import CertificationsSection from "@/components/CertificationsSection";
 import EducationSection from "@/components/EducationSection";
 import Footer from "@/components/Footer";
-import ThemeToggle from "@/components/ThemeToggle";
+import Navbar from "@/components/Navbar";
 import profileAvatar from "@/assets/profile-avatar.png";
 
 const Index = () => {
@@ -17,9 +17,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <ThemeToggle />
+      <Navbar />
       {/* Hero */}
-      <header className="px-6 md:px-12 pt-16 pb-12 max-w-6xl mx-auto">
+      <header className="px-6 md:px-12 pt-24 pb-12 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -62,7 +62,7 @@ const Index = () => {
       </header>
 
       {/* Projects Section */}
-      <section className="px-6 md:px-12 pb-8 max-w-6xl mx-auto">
+      <section id="projects" className="px-6 md:px-12 pb-8 max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <h2 className="font-mono-display text-[11px] tracking-[0.15em] text-foreground/40 uppercase">
             Projects ({projects.length})
@@ -109,10 +109,14 @@ const Index = () => {
       <SkillsSection />
 
       {/* Education */}
-      <EducationSection />
+      <div id="education">
+        <EducationSection />
+      </div>
 
       {/* Certifications */}
-      <CertificationsSection />
+      <div id="certifications">
+        <CertificationsSection />
+      </div>
 
       {/* Footer */}
       <Footer />

@@ -1,5 +1,25 @@
 import { motion } from "framer-motion";
 
+const techLogos: Record<string, string> = {
+  "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+  "JavaScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  "C": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
+  "C++": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+  "HTML": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+  "CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+  "PHP": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+  "Node.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  "MySQL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+  "MongoDB": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+  "Git": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+  "GitHub": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+  "Google Cloud Platform": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
+  "React.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  "TypeScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  "Python": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  "Express.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+};
+
 const skillCategories = [
   { label: "Programming Languages", items: ["Java", "JavaScript", "C", "C++"] },
   { label: "Web Development", items: ["HTML", "CSS", "PHP", "Node.js"] },
@@ -10,7 +30,7 @@ const skillCategories = [
 ];
 
 const SkillsSection = () => (
-  <section className="px-6 md:px-12 py-16 max-w-6xl mx-auto">
+  <section id="skills" className="px-6 md:px-12 py-16 max-w-6xl mx-auto">
     <h2 className="font-mono-display text-[11px] tracking-[0.15em] text-foreground/40 uppercase mb-8">
       Skills & Expertise
     </h2>
@@ -29,7 +49,12 @@ const SkillsSection = () => (
           </h3>
           <div className="flex flex-wrap gap-2">
             {cat.items.map((item) => (
-              <span key={item} className="px-2 py-1 text-[10px] font-mono uppercase tracking-[0.15em] rounded-md bg-foreground/10 text-foreground/80 border border-foreground/10">{item}</span>
+              <span key={item} className="inline-flex items-center gap-1.5 px-2 py-1 text-[10px] font-mono uppercase tracking-[0.15em] rounded-md bg-foreground/10 text-foreground/80 border border-foreground/10">
+                {techLogos[item] && (
+                  <img src={techLogos[item]} alt={item} className="w-3.5 h-3.5" />
+                )}
+                {item}
+              </span>
             ))}
           </div>
         </motion.div>
