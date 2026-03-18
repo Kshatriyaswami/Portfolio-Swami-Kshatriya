@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, List, Terminal } from "lucide-react";
 import { projects, type Project } from "@/data/projects";
@@ -11,6 +11,8 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import profileAvatar from "@/assets/profile-avatar.png";
 
+const HeroScene = lazy(() => import("@/components/HeroScene"));
+
 const Index = () => {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -19,12 +21,17 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       {/* Hero */}
-      <header className="px-6 md:px-12 pt-24 pb-12 max-w-6xl mx-auto">
+      <header className="relative px-6 md:px-12 pt-24 pb-12 max-w-6xl mx-auto overflow-hidden">
+        {/* 3D Background */}
+        <Suspense fallback={null}>
+          <HeroScene />
+        </Suspense>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-          className="flex flex-col md:flex-row items-start gap-8"
+          className="flex flex-col md:flex-row items-start gap-8 relative z-10"
         >
           {/* Avatar */}
           <motion.div
