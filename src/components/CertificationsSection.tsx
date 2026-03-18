@@ -5,6 +5,7 @@ const certifications = [
   {
     title: "Deloitte Technology Job Simulation",
     org: "Deloitte Australia – Forage",
+    link: "https://drive.google.com/file/d/1fDaMOy631uCUC26e5GiKPDgICyYYgcuu/view",
     details: [
       "Completed real-world simulation involving software development and data analysis tasks.",
       "Designed business dashboard proposal and data insights.",
@@ -13,6 +14,7 @@ const certifications = [
   {
     title: "APAC Solutions Architecture Virtual Experience",
     org: "AWS",
+    link: "https://drive.google.com/file/d/1hVZk3NhlcBmZCdCoSBqAuFFDRQZL3lbv/view",
     details: [
       "Planned a scalable cloud hosting architecture using AWS Elastic Beanstalk.",
       "Proposed an optimized solution to improve performance and reduce response time.",
@@ -53,6 +55,14 @@ const CertificationsSection = () => (
                   </li>
                 ))}
               </ul>
+              <a
+                href={cert.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 mt-3 text-[11px] font-mono uppercase tracking-widest text-accent-red hover:underline"
+              >
+                <ExternalLink size={11} /> View Certificate
+              </a>
             </div>
           </div>
         </motion.div>

@@ -1,6 +1,6 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, RefreshCw, Maximize2, Monitor, Tablet, Smartphone, Github, Zap, ChevronRight } from "lucide-react";
+import { X, ExternalLink, RefreshCw, Maximize2, Monitor, Tablet, Smartphone, Github, Zap, ChevronRight, Volume2, VolumeX } from "lucide-react";
 import type { Project } from "@/data/projects";
 
 interface ProjectModalProps {
@@ -18,11 +18,23 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   const [device, setDevice] = useState<keyof typeof deviceWidths>("desktop");
   const [iframeKey, setIframeKey] = useState(0);
   const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [voiceEnabled, setVoiceEnabled] = useState(true);
 
   const handleRefresh = useCallback(() => {
     setIframeLoaded(false);
     setIframeKey((k) => k + 1);
   }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.dispatchEvent(
+        new CustomEvent("ai-explain-project", {
+          detail: { projectName: project.name, triggerVoice: voiceEnabled },
+        })
+      );
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [project.name, voiceEnabled]);
 
   return (
     <motion.div
@@ -119,6 +131,26 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                     >
                       <Github size={14} /> Source Code
                     </a>
+                    <button
+                      onClick={() => setVoiceEnabled(!voiceEnabled)}
+                      className="flex items-center gap-2 px-3 py-2 border border-foreground/10 rounded-lg text-sm text-foreground/70 hover:text-foreground hover:border-foreground/20 transition-colors"
+                      title="Toggle Voice Explanation"
+                    >
+                      {voiceEnabled ? <Volume2 size={14} /> : <VolumeX size={14} />} 
+                      <span>{voiceEnabled ? 'Voice On' : 'Voice Off'}</span>
+                    </button>
+                    <button
+                      onClick={() =>
+                        window.dispatchEvent(
+                          new CustomEvent("ai-explain-project", {
+                            detail: { projectName: project.name, triggerVoice: voiceEnabled },
+                          })
+                        )
+                      }
+                      className="flex items-center gap-2 px-4 py-2 bg-accent-red/10 text-accent-red border border-accent-red/20 rounded-lg text-sm font-medium hover:bg-accent-red/20 transition-colors ml-auto"
+                    >
+                      ✨ Explain this project
+                    </button>
                   </div>
                 </div>
               </TabContent>

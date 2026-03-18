@@ -1,3 +1,3 @@
-# Welcome to your Lovable project
+# Swami Portfolio
 
 TODO: Document your project here

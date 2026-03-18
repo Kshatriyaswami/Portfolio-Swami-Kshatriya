@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100">
+  <style>
+    text { 
+      font-family: 'Geist Sans', system-ui, -apple-system, sans-serif; 
+      font-weight: 700; 
+      font-size: 64px; 
+      fill: #1A1D23; /* Light mode text color */
+      letter-spacing: -2px;
+    }
+    .dot { fill: hsl(5, 85%, 55%); }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #F3F4F6; /* Dark mode text color */ }
+    }
+  </style>
+  <text x="50%" y="70%" text-anchor="middle">SNK<tspan class="dot">.</tspan></text>
+</svg>
