@@ -161,7 +161,7 @@ const AIAssistant = () => {
     setMessages([]);
     setSelectedProject(null);
     setInputValue("");
-    setHasPrompted(false);
+    // Keep hasPrompted = true so auto-popup never re-fires
     setIsOpen(false);
   };
 
@@ -258,8 +258,6 @@ const AIAssistant = () => {
         { id: (Date.now() + 1).toString(), role: "assistant", content: response }
       ]);
       setIsTyping(false);
-      // Auto-speak every assistant response
-      playVoice(response);
     }, 500);
 
   };
@@ -329,14 +327,25 @@ const AIAssistant = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                 >
-                  <div
-                    className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm ${
-                      msg.role === "user"
-                        ? "bg-background text-foreground rounded-br-sm shadow-sm"
-                        : "bg-background/10 text-background rounded-bl-sm border border-background/10"
-                    }`}
-                  >
-                    {msg.content}
+                  <div className="flex items-end gap-1 max-w-[85%]">
+                    <div
+                      className={`rounded-2xl px-4 py-2.5 text-sm ${
+                        msg.role === "user"
+                          ? "bg-background text-foreground rounded-br-sm shadow-sm"
+                          : "bg-background/10 text-background rounded-bl-sm border border-background/10"
+                      }`}
+                    >
+                      {msg.content}
+                    </div>
+                    {msg.role === "assistant" && voiceSupported && (
+                      <button
+                        onClick={() => playVoice(msg.content)}
+                        className="flex-shrink-0 p-1 text-background/40 hover:text-accent-red transition-colors rounded-full hover:bg-background/10"
+                        title="Read aloud"
+                      >
+                        <Volume2 size={14} />
+                      </button>
+                    )}
                   </div>
                 </motion.div>
               ))}
